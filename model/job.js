@@ -43,15 +43,15 @@ const jobSchema = new mongoose.Schema(
             required: true,
         },
        
-        // duration: {
-        //     type: String,
-        //     required: true,
-        // },
-      
-        information: {
+        duration: {
             type: String,
             required: true,
         },
+      
+        // information: {
+        //     type: String,
+        //     required: true,
+        // },
         
        
         refUserId: {

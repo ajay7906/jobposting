@@ -1,4 +1,4 @@
-const Job = require("../models/job");
+const Job = require("../model/job");
 
 const createJobPost = async (req, res, next) => {
     try {
@@ -9,29 +9,30 @@ const createJobPost = async (req, res, next) => {
             description,
             salary,
             location,
-            //  duration,
+             duration,
             locationType,
             skills,
             jobType,
-            information,
+            aboutCompany,
+            // information,
             refUserId,
         } = req.body;
 
-        if (
-            !companyName ||
-            !logoUrl ||
-            !title ||
-            !description ||
-            !salary ||
-            !location ||
-            // !duration ||
-            !locationType ||
-            !skillsRequired
-        ) {
-            return res.status(400).json({
-                errorMessage: "Bad request   fffg gg",
-            });
-        }
+        // if (
+        //     !companyName ||
+        //     !logoUrl ||
+        //     !title ||
+        //     !description ||
+        //     !salary ||
+        //     !location ||
+        //     // !duration ||
+        //     !locationType ||
+        //     !skills
+        // ) {
+        //     return res.status(400).json({
+        //         errorMessage: "Bad request   fffg gg",
+        //     });
+        // }
 
         const userId = req.userId;
         console.log(req);
@@ -43,10 +44,11 @@ const createJobPost = async (req, res, next) => {
             description,
             salary,
             location,
-            // duration,
+            duration,
+            aboutCompany,
             locationType,
             jobType,
-            information,
+            // information,
             skills
             ,
             refUserId: userId,
@@ -172,7 +174,7 @@ const getAllJobs = async (req, res, next) => {
                 title: { $regex: title, $options: "i" },
                 ...filter,
             },
-            { companyName: 1, title: 1 }
+            { companyName: 1, title: 1, logoUrl: 1, salary: 1, skills: 1, location:1 }
         );
         res.json({ data: jobList });
     } catch (error) {
